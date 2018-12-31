@@ -1,4 +1,5 @@
 # Flask on Heroku
+Clone from The Data Incubator Flask Demo
 
 This project is intended to help you tie together some important concepts and
 technologies from the 12-day course, including Git, Flask, JSON, Pandas,
