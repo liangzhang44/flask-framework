@@ -17,21 +17,17 @@ app.config['SECRET_KEY'] = 'hard to guess string'
 bootstrap = Bootstrap(app)
 moment = Moment(app)
 
-
 class TickerForm(FlaskForm):
     ticker = StringField('Please type in a valid stock ticker:', validators=[DataRequired()])
     submit = SubmitField('Submit')
-
 
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
 
-
 @app.errorhandler(500)
 def internal_server_error(e):
     return render_template('500.html'), 500
-
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -40,11 +36,17 @@ def index():
         stock = form.ticker.data
         quandl.ApiConfig.api_key = "-1B6MPSvhgmkw-7uLx_x"
         df = quandl.get_table('WIKI/PRICES', ticker=stock, paginate=True)
+
+        # if the ticker is mispelled or there is no data of this stock in the database
+        if df.size == 0:
+            return render_template('nodata.html', current_time=datetime.utcnow())
+
         df = df[::-1]
         inc = df.close > df.open
         dec = df.open > df.close
         w = 12*60*60*1000 # half day in ms
-
+        
+        # make a plot with 50-day and 200-day moving average
         TOOLS = "pan, wheel_zoom, box_zoom, reset, save"
         p = figure(x_axis_type="datetime", tools=TOOLS, plot_width=1000, title = "Data provided by Quandl")
         p.xaxis.axis_label = 'Date'

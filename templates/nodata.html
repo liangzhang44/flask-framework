@@ -1,12 +1,8 @@
 {% extends "base.html" %}
-{% import "bootstrap/wtf.html" as wtf %}
 
 {% block page_content %}
 <div class="page-header">
-    <h1>You can use this website to pull out historical prices for stocks. Please make sure the ticker you type in is valid!</h1>
-</div>
-<div style="width: 25%">
-{{ wtf.quick_form(form) }}
+    <h1>No data retrieved! Please double-check your ticker.</h1>
 </div>
 <p>The local date and time is {{ moment(current_time).format('LLL') }}.</p>
 <p>That was {{ moment(current_time).fromNow(refresh=True) }}.</p>
