@@ -7,8 +7,7 @@
 <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
 <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
 <link rel="stylesheet" href="{{ url_for('static',filename='style.css')}}" type="text/css">
-<link href="http://cdn.pydata.org/bokeh/release/bokeh-1.0.3.min.css" rel="stylesheet" type="text/css">
-<link href="http://cdn.pydata.org/bokeh/release/bokeh-widgets-1.0.3.min.css" rel="stylesheet" type="text/css">
+<link href="//cdn.pydata.org/bokeh/release/bokeh-1.0.3.min.css" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block navbar %}
@@ -42,8 +41,7 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="http://cdn.pydata.org/bokeh/release/bokeh-1.0.3.min.js"></script>
-<script src="http://cdn.pydata.org/bokeh/release/bokeh-widgets-1.0.3.min.js"></script>
+<script src="//cdn.pydata.org/bokeh/release/bokeh-1.0.3.min.js"></script>
 {{ super() }}
 {{ moment.include_moment() }}
 {% endblock %}
